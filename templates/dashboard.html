@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Social Media Analytics Platform</span>
+            <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+        </div>
+    </nav>
+    
+    <div class="container mt-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Dashboard: Case Study Insights</h2>
+            <div>
+                <span class="badge bg-primary fs-6">Data Source: Facebook API</span>
+                <a href="/report" target="_blank" class="btn btn-success fw-bold">📝 Generate Final Report</a>
+            </div>
+        </div>
+        
+        {% if sentiment_chart %}
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 1: Sentiment Analysis</div>
+                        <div class="card-body">{{ sentiment_chart | safe }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 2: Trending Topics</div>
+                        <div class="card-body">{{ trends_chart | safe }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 3: Network Analysis</div>
+                        <div class="card-body"><h5>Graph Stats</h5>{{ network_stats | safe }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 9: Influencer Detection</div>
+                        <div class="card-body">{{ influencer_chart | safe }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 5: Fake News Detection</div>
+                        <div class="card-body">{{ fake_news_chart | safe }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white fw-bold">Module 4: Recommendation System (Content-Based)</div>
+                        <div class="card-body">
+                            {{ recommendation_html | safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">No data found. Ensure apify_data.json is populated!</div>
+        {% endif %}
+    </div>
+</body>
+</html>

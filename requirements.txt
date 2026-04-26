@@ -1,0 +1,6 @@
+Flask
+pandas
+textblob
+networkx
+plotly
+scikit-learn
